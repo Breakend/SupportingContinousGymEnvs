@@ -50,6 +50,21 @@ Due to the dependency on OpenAI gym you may have some trouble when installing gy
 export MACOSX_DEPLOYMENT_TARGET=10.12; pip install -e .
 ```
 
+Also, if you get the following error:
+```
+>>> import matplotlib.pyplot
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "/home/florian/anaconda2/lib/python2.7/site-packages/matplotlib/pyplot.py", line 115, in <module>
+    _backend_mod, new_figure_manager, draw_if_interactive, _show = pylab_setup()
+  File "/home/florian/anaconda2/lib/python2.7/site-packages/matplotlib/backends/__init__.py", line 32, in pylab_setup
+    globals(),locals(),[backend_name],0)
+  File "/home/florian/anaconda2/lib/python2.7/site-packages/matplotlib/backends/backend_gtk.py", line 19, in <module>
+    raise ImportError("Gtk* backend requires pygtk to be installed.")
+ImportError: Gtk* backend requires pygtk to be installed.
+```
+the easiest fix is to switch backends for matplotlib. You can do this by setting `backend: TkAgg` in `~/.config/matplotlib/matplotlibrc` or `~/.matplotlib/matplotlibrc`
+
 ## More info
 
 More information will be provided on our doc website: https://breakend.github.io/gym-extensions/
