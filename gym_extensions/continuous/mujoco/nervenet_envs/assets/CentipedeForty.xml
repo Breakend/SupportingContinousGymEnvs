@@ -1,0 +1,686 @@
+
+<mujoco model="centipede">
+  <compiler angle="degree" coordinate="local" inertiafromgeom="true"/>
+
+  <option integrator="RK4" timestep="0.01"/>
+
+  <default>
+    <joint armature="1" damping="1" limited="true"/>
+    <geom conaffinity="0" condim="3" density="25.0" friction="1.5 0.1 0.1" margin="0.01" rgba="0.8 0.6 0.4 1"/>
+  </default>
+
+  <asset>
+    <texture builtin="gradient" height="100" rgb1="1 1 1" rgb2="0 0 0" type="skybox" width="100"/>
+    <texture builtin="flat" height="1278" mark="cross" markrgb="1 1 1" name="texgeom" random="0.01" rgb1="0.8 0.6 0.4" rgb2="0.8 0.6 0.4" type="cube" width="127"/>
+    <texture builtin="checker" height="100" name="texplane" rgb1="0 0 0" rgb2="0.8 0.8 0.8" type="2d" width="100"/>
+    <material name="MatPlane" reflectance="0.5" shininess="1" specular="1" texrepeat="60 60" texture="texplane"/>
+    <material name="geom" texture="texgeom" texuniform="true"/>
+  </asset>
+
+  <worldbody>
+    <light cutoff="100" diffuse="1 1 1" dir="-0 0 -1.3" directional="true" exponent="1" pos="0 0 1.3" specular=".1 .1 .1"/>
+    <geom conaffinity="1" condim="3" material="MatPlane" name="floor" pos="0 0 0" rgba="0.8 0.9 0.8 1" size="40 40 40" type="plane"/>
+    <body name="torso_0" pos="0 0 0.75">
+      <geom name="torsoGeom_0" pos="0 0 0" size="0.25" type="sphere" density="100"/>
+      <joint armature="0" damping="0" limited="false" margin="0.01" name="root" pos="0 0 0" type="free"/>
+      
+      <body name="legbody_0" pos="0.0 -0.28 0">
+        <joint axis="0 0 1" name="lefthip_0" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+        <geom fromto="0.0 0.0 0.0 0.0 -0.28 0.0" name="legGeom_0" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+        <body pos="0 -0.28 0" name="frontFoot_0">
+          <joint axis="1 0 0" name="ankle_0" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+          <geom fromto="0.0 0.0 0.0 0 -0.6 0.0" name="ankleGeom_0" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+        </body>
+      </body>
+      
+      
+      <body name="legbody_1" pos="0.0 0.28 0">
+        <joint axis="0 0 1" name="righthip_1" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+        <geom fromto="0.0 0.0 0.0 0.0 0.28 0.0" name="legGeom_1" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+        <body pos="0 0.28 0" name="frontFoot_1">
+          <joint axis="-1 0 0" name="ankle_1" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+          <geom fromto="0.0 0.0 0.0 0 0.6 0.0" name="ankleGeom_1" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+        </body>
+      </body>
+      
+      
+      <body name="torso_1" pos="0.50 0 0">
+        <geom name="torsoGeom_1" pos="0 0 0" size="0.25" type="sphere" density="100"/>
+        <joint axis="0 0 1" name="body_1" pos="-0.25 0.0 0.0" range="-20 20" type="hinge"/>
+        <joint axis="0 1 0" name="bodyupdown_1" pos="-0.25 0.0 0.0" range="-10 30" type="hinge"/>
+      
+        
+        <body name="legbody_2" pos="0.0 -0.28 0">
+          <joint axis="0 0 1" name="lefthip_2" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+          <geom fromto="0.0 0.0 0.0 0.0 -0.28 0.0" name="legGeom_2" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+          <body pos="0 -0.28 0" name="frontFoot_2">
+            <joint axis="1 0 0" name="ankle_2" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+            <geom fromto="0.0 0.0 0.0 0 -0.6 0.0" name="ankleGeom_2" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+          </body>
+        </body>
+        
+        
+        <body name="legbody_3" pos="0.0 0.28 0">
+          <joint axis="0 0 1" name="righthip_3" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+          <geom fromto="0.0 0.0 0.0 0.0 0.28 0.0" name="legGeom_3" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+          <body pos="0 0.28 0" name="frontFoot_3">
+            <joint axis="-1 0 0" name="ankle_3" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+            <geom fromto="0.0 0.0 0.0 0 0.6 0.0" name="ankleGeom_3" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+          </body>
+        </body>
+        
+        
+        <body name="torso_2" pos="0.50 0 0">
+          <geom name="torsoGeom_2" pos="0 0 0" size="0.25" type="sphere" density="100"/>
+          <joint axis="0 0 1" name="body_2" pos="-0.25 0.0 0.0" range="-20 20" type="hinge"/>
+          <joint axis="0 1 0" name="bodyupdown_2" pos="-0.25 0.0 0.0" range="-10 30" type="hinge"/>
+        
+          
+          <body name="legbody_4" pos="0.0 -0.28 0">
+            <joint axis="0 0 1" name="lefthip_4" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+            <geom fromto="0.0 0.0 0.0 0.0 -0.28 0.0" name="legGeom_4" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+            <body pos="0 -0.28 0" name="frontFoot_4">
+              <joint axis="1 0 0" name="ankle_4" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+              <geom fromto="0.0 0.0 0.0 0 -0.6 0.0" name="ankleGeom_4" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+            </body>
+          </body>
+          
+          
+          <body name="legbody_5" pos="0.0 0.28 0">
+            <joint axis="0 0 1" name="righthip_5" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+            <geom fromto="0.0 0.0 0.0 0.0 0.28 0.0" name="legGeom_5" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+            <body pos="0 0.28 0" name="frontFoot_5">
+              <joint axis="-1 0 0" name="ankle_5" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+              <geom fromto="0.0 0.0 0.0 0 0.6 0.0" name="ankleGeom_5" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+            </body>
+          </body>
+          
+          
+          <body name="torso_3" pos="0.50 0 0">
+            <geom name="torsoGeom_3" pos="0 0 0" size="0.25" type="sphere" density="100"/>
+            <joint axis="0 0 1" name="body_3" pos="-0.25 0.0 0.0" range="-20 20" type="hinge"/>
+            <joint axis="0 1 0" name="bodyupdown_3" pos="-0.25 0.0 0.0" range="-10 30" type="hinge"/>
+          
+            
+            <body name="legbody_6" pos="0.0 -0.28 0">
+              <joint axis="0 0 1" name="lefthip_6" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+              <geom fromto="0.0 0.0 0.0 0.0 -0.28 0.0" name="legGeom_6" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+              <body pos="0 -0.28 0" name="frontFoot_6">
+                <joint axis="1 0 0" name="ankle_6" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                <geom fromto="0.0 0.0 0.0 0 -0.6 0.0" name="ankleGeom_6" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+              </body>
+            </body>
+            
+            
+            <body name="legbody_7" pos="0.0 0.28 0">
+              <joint axis="0 0 1" name="righthip_7" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+              <geom fromto="0.0 0.0 0.0 0.0 0.28 0.0" name="legGeom_7" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+              <body pos="0 0.28 0" name="frontFoot_7">
+                <joint axis="-1 0 0" name="ankle_7" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                <geom fromto="0.0 0.0 0.0 0 0.6 0.0" name="ankleGeom_7" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+              </body>
+            </body>
+            
+            
+            <body name="torso_4" pos="0.50 0 0">
+              <geom name="torsoGeom_4" pos="0 0 0" size="0.25" type="sphere" density="100"/>
+              <joint axis="0 0 1" name="body_4" pos="-0.25 0.0 0.0" range="-20 20" type="hinge"/>
+              <joint axis="0 1 0" name="bodyupdown_4" pos="-0.25 0.0 0.0" range="-10 30" type="hinge"/>
+            
+              
+              <body name="legbody_8" pos="0.0 -0.28 0">
+                <joint axis="0 0 1" name="lefthip_8" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                <geom fromto="0.0 0.0 0.0 0.0 -0.28 0.0" name="legGeom_8" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                <body pos="0 -0.28 0" name="frontFoot_8">
+                  <joint axis="1 0 0" name="ankle_8" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                  <geom fromto="0.0 0.0 0.0 0 -0.6 0.0" name="ankleGeom_8" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                </body>
+              </body>
+              
+              
+              <body name="legbody_9" pos="0.0 0.28 0">
+                <joint axis="0 0 1" name="righthip_9" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                <geom fromto="0.0 0.0 0.0 0.0 0.28 0.0" name="legGeom_9" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                <body pos="0 0.28 0" name="frontFoot_9">
+                  <joint axis="-1 0 0" name="ankle_9" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                  <geom fromto="0.0 0.0 0.0 0 0.6 0.0" name="ankleGeom_9" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                </body>
+              </body>
+              
+              
+              <body name="torso_5" pos="0.50 0 0">
+                <geom name="torsoGeom_5" pos="0 0 0" size="0.25" type="sphere" density="100"/>
+                <joint axis="0 0 1" name="body_5" pos="-0.25 0.0 0.0" range="-20 20" type="hinge"/>
+                <joint axis="0 1 0" name="bodyupdown_5" pos="-0.25 0.0 0.0" range="-10 30" type="hinge"/>
+              
+                
+                <body name="legbody_10" pos="0.0 -0.28 0">
+                  <joint axis="0 0 1" name="lefthip_10" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                  <geom fromto="0.0 0.0 0.0 0.0 -0.28 0.0" name="legGeom_10" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                  <body pos="0 -0.28 0" name="frontFoot_10">
+                    <joint axis="1 0 0" name="ankle_10" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                    <geom fromto="0.0 0.0 0.0 0 -0.6 0.0" name="ankleGeom_10" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                  </body>
+                </body>
+                
+                
+                <body name="legbody_11" pos="0.0 0.28 0">
+                  <joint axis="0 0 1" name="righthip_11" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                  <geom fromto="0.0 0.0 0.0 0.0 0.28 0.0" name="legGeom_11" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                  <body pos="0 0.28 0" name="frontFoot_11">
+                    <joint axis="-1 0 0" name="ankle_11" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                    <geom fromto="0.0 0.0 0.0 0 0.6 0.0" name="ankleGeom_11" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                  </body>
+                </body>
+                
+                
+                <body name="torso_6" pos="0.50 0 0">
+                  <geom name="torsoGeom_6" pos="0 0 0" size="0.25" type="sphere" density="100"/>
+                  <joint axis="0 0 1" name="body_6" pos="-0.25 0.0 0.0" range="-20 20" type="hinge"/>
+                  <joint axis="0 1 0" name="bodyupdown_6" pos="-0.25 0.0 0.0" range="-10 30" type="hinge"/>
+                
+                  
+                  <body name="legbody_12" pos="0.0 -0.28 0">
+                    <joint axis="0 0 1" name="lefthip_12" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                    <geom fromto="0.0 0.0 0.0 0.0 -0.28 0.0" name="legGeom_12" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                    <body pos="0 -0.28 0" name="frontFoot_12">
+                      <joint axis="1 0 0" name="ankle_12" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                      <geom fromto="0.0 0.0 0.0 0 -0.6 0.0" name="ankleGeom_12" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                    </body>
+                  </body>
+                  
+                  
+                  <body name="legbody_13" pos="0.0 0.28 0">
+                    <joint axis="0 0 1" name="righthip_13" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                    <geom fromto="0.0 0.0 0.0 0.0 0.28 0.0" name="legGeom_13" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                    <body pos="0 0.28 0" name="frontFoot_13">
+                      <joint axis="-1 0 0" name="ankle_13" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                      <geom fromto="0.0 0.0 0.0 0 0.6 0.0" name="ankleGeom_13" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                    </body>
+                  </body>
+                  
+                  
+                  <body name="torso_7" pos="0.50 0 0">
+                    <geom name="torsoGeom_7" pos="0 0 0" size="0.25" type="sphere" density="100"/>
+                    <joint axis="0 0 1" name="body_7" pos="-0.25 0.0 0.0" range="-20 20" type="hinge"/>
+                    <joint axis="0 1 0" name="bodyupdown_7" pos="-0.25 0.0 0.0" range="-10 30" type="hinge"/>
+                  
+                    
+                    <body name="legbody_14" pos="0.0 -0.28 0">
+                      <joint axis="0 0 1" name="lefthip_14" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                      <geom fromto="0.0 0.0 0.0 0.0 -0.28 0.0" name="legGeom_14" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                      <body pos="0 -0.28 0" name="frontFoot_14">
+                        <joint axis="1 0 0" name="ankle_14" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                        <geom fromto="0.0 0.0 0.0 0 -0.6 0.0" name="ankleGeom_14" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                      </body>
+                    </body>
+                    
+                    
+                    <body name="legbody_15" pos="0.0 0.28 0">
+                      <joint axis="0 0 1" name="righthip_15" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                      <geom fromto="0.0 0.0 0.0 0.0 0.28 0.0" name="legGeom_15" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                      <body pos="0 0.28 0" name="frontFoot_15">
+                        <joint axis="-1 0 0" name="ankle_15" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                        <geom fromto="0.0 0.0 0.0 0 0.6 0.0" name="ankleGeom_15" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                      </body>
+                    </body>
+                    
+                    
+                    <body name="torso_8" pos="0.50 0 0">
+                      <geom name="torsoGeom_8" pos="0 0 0" size="0.25" type="sphere" density="100"/>
+                      <joint axis="0 0 1" name="body_8" pos="-0.25 0.0 0.0" range="-20 20" type="hinge"/>
+                      <joint axis="0 1 0" name="bodyupdown_8" pos="-0.25 0.0 0.0" range="-10 30" type="hinge"/>
+                    
+                      
+                      <body name="legbody_16" pos="0.0 -0.28 0">
+                        <joint axis="0 0 1" name="lefthip_16" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                        <geom fromto="0.0 0.0 0.0 0.0 -0.28 0.0" name="legGeom_16" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                        <body pos="0 -0.28 0" name="frontFoot_16">
+                          <joint axis="1 0 0" name="ankle_16" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                          <geom fromto="0.0 0.0 0.0 0 -0.6 0.0" name="ankleGeom_16" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                        </body>
+                      </body>
+                      
+                      
+                      <body name="legbody_17" pos="0.0 0.28 0">
+                        <joint axis="0 0 1" name="righthip_17" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                        <geom fromto="0.0 0.0 0.0 0.0 0.28 0.0" name="legGeom_17" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                        <body pos="0 0.28 0" name="frontFoot_17">
+                          <joint axis="-1 0 0" name="ankle_17" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                          <geom fromto="0.0 0.0 0.0 0 0.6 0.0" name="ankleGeom_17" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                        </body>
+                      </body>
+                      
+                      
+                      <body name="torso_9" pos="0.50 0 0">
+                        <geom name="torsoGeom_9" pos="0 0 0" size="0.25" type="sphere" density="100"/>
+                        <joint axis="0 0 1" name="body_9" pos="-0.25 0.0 0.0" range="-20 20" type="hinge"/>
+                        <joint axis="0 1 0" name="bodyupdown_9" pos="-0.25 0.0 0.0" range="-10 30" type="hinge"/>
+                      
+                        
+                        <body name="legbody_18" pos="0.0 -0.28 0">
+                          <joint axis="0 0 1" name="lefthip_18" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                          <geom fromto="0.0 0.0 0.0 0.0 -0.28 0.0" name="legGeom_18" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                          <body pos="0 -0.28 0" name="frontFoot_18">
+                            <joint axis="1 0 0" name="ankle_18" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                            <geom fromto="0.0 0.0 0.0 0 -0.6 0.0" name="ankleGeom_18" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                          </body>
+                        </body>
+                        
+                        
+                        <body name="legbody_19" pos="0.0 0.28 0">
+                          <joint axis="0 0 1" name="righthip_19" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                          <geom fromto="0.0 0.0 0.0 0.0 0.28 0.0" name="legGeom_19" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                          <body pos="0 0.28 0" name="frontFoot_19">
+                            <joint axis="-1 0 0" name="ankle_19" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                            <geom fromto="0.0 0.0 0.0 0 0.6 0.0" name="ankleGeom_19" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                          </body>
+                        </body>
+                        
+                        
+                        <body name="torso_10" pos="0.50 0 0">
+                          <geom name="torsoGeom_10" pos="0 0 0" size="0.25" type="sphere" density="100"/>
+                          <joint axis="0 0 1" name="body_10" pos="-0.25 0.0 0.0" range="-20 20" type="hinge"/>
+                          <joint axis="0 1 0" name="bodyupdown_10" pos="-0.25 0.0 0.0" range="-10 30" type="hinge"/>
+                        
+                          
+                          <body name="legbody_20" pos="0.0 -0.28 0">
+                            <joint axis="0 0 1" name="lefthip_20" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                            <geom fromto="0.0 0.0 0.0 0.0 -0.28 0.0" name="legGeom_20" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                            <body pos="0 -0.28 0" name="frontFoot_20">
+                              <joint axis="1 0 0" name="ankle_20" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                              <geom fromto="0.0 0.0 0.0 0 -0.6 0.0" name="ankleGeom_20" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                            </body>
+                          </body>
+                          
+                          
+                          <body name="legbody_21" pos="0.0 0.28 0">
+                            <joint axis="0 0 1" name="righthip_21" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                            <geom fromto="0.0 0.0 0.0 0.0 0.28 0.0" name="legGeom_21" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                            <body pos="0 0.28 0" name="frontFoot_21">
+                              <joint axis="-1 0 0" name="ankle_21" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                              <geom fromto="0.0 0.0 0.0 0 0.6 0.0" name="ankleGeom_21" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                            </body>
+                          </body>
+                          
+                          
+                          <body name="torso_11" pos="0.50 0 0">
+                            <geom name="torsoGeom_11" pos="0 0 0" size="0.25" type="sphere" density="100"/>
+                            <joint axis="0 0 1" name="body_11" pos="-0.25 0.0 0.0" range="-20 20" type="hinge"/>
+                            <joint axis="0 1 0" name="bodyupdown_11" pos="-0.25 0.0 0.0" range="-10 30" type="hinge"/>
+                          
+                            
+                            <body name="legbody_22" pos="0.0 -0.28 0">
+                              <joint axis="0 0 1" name="lefthip_22" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                              <geom fromto="0.0 0.0 0.0 0.0 -0.28 0.0" name="legGeom_22" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                              <body pos="0 -0.28 0" name="frontFoot_22">
+                                <joint axis="1 0 0" name="ankle_22" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                                <geom fromto="0.0 0.0 0.0 0 -0.6 0.0" name="ankleGeom_22" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                              </body>
+                            </body>
+                            
+                            
+                            <body name="legbody_23" pos="0.0 0.28 0">
+                              <joint axis="0 0 1" name="righthip_23" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                              <geom fromto="0.0 0.0 0.0 0.0 0.28 0.0" name="legGeom_23" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                              <body pos="0 0.28 0" name="frontFoot_23">
+                                <joint axis="-1 0 0" name="ankle_23" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                                <geom fromto="0.0 0.0 0.0 0 0.6 0.0" name="ankleGeom_23" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                              </body>
+                            </body>
+                            
+                            
+                            <body name="torso_12" pos="0.50 0 0">
+                              <geom name="torsoGeom_12" pos="0 0 0" size="0.25" type="sphere" density="100"/>
+                              <joint axis="0 0 1" name="body_12" pos="-0.25 0.0 0.0" range="-20 20" type="hinge"/>
+                              <joint axis="0 1 0" name="bodyupdown_12" pos="-0.25 0.0 0.0" range="-10 30" type="hinge"/>
+                            
+                              
+                              <body name="legbody_24" pos="0.0 -0.28 0">
+                                <joint axis="0 0 1" name="lefthip_24" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                                <geom fromto="0.0 0.0 0.0 0.0 -0.28 0.0" name="legGeom_24" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                <body pos="0 -0.28 0" name="frontFoot_24">
+                                  <joint axis="1 0 0" name="ankle_24" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                                  <geom fromto="0.0 0.0 0.0 0 -0.6 0.0" name="ankleGeom_24" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                </body>
+                              </body>
+                              
+                              
+                              <body name="legbody_25" pos="0.0 0.28 0">
+                                <joint axis="0 0 1" name="righthip_25" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                                <geom fromto="0.0 0.0 0.0 0.0 0.28 0.0" name="legGeom_25" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                <body pos="0 0.28 0" name="frontFoot_25">
+                                  <joint axis="-1 0 0" name="ankle_25" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                                  <geom fromto="0.0 0.0 0.0 0 0.6 0.0" name="ankleGeom_25" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                </body>
+                              </body>
+                              
+                              
+                              <body name="torso_13" pos="0.50 0 0">
+                                <geom name="torsoGeom_13" pos="0 0 0" size="0.25" type="sphere" density="100"/>
+                                <joint axis="0 0 1" name="body_13" pos="-0.25 0.0 0.0" range="-20 20" type="hinge"/>
+                                <joint axis="0 1 0" name="bodyupdown_13" pos="-0.25 0.0 0.0" range="-10 30" type="hinge"/>
+                              
+                                
+                                <body name="legbody_26" pos="0.0 -0.28 0">
+                                  <joint axis="0 0 1" name="lefthip_26" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                                  <geom fromto="0.0 0.0 0.0 0.0 -0.28 0.0" name="legGeom_26" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                  <body pos="0 -0.28 0" name="frontFoot_26">
+                                    <joint axis="1 0 0" name="ankle_26" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                                    <geom fromto="0.0 0.0 0.0 0 -0.6 0.0" name="ankleGeom_26" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                  </body>
+                                </body>
+                                
+                                
+                                <body name="legbody_27" pos="0.0 0.28 0">
+                                  <joint axis="0 0 1" name="righthip_27" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                                  <geom fromto="0.0 0.0 0.0 0.0 0.28 0.0" name="legGeom_27" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                  <body pos="0 0.28 0" name="frontFoot_27">
+                                    <joint axis="-1 0 0" name="ankle_27" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                                    <geom fromto="0.0 0.0 0.0 0 0.6 0.0" name="ankleGeom_27" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                  </body>
+                                </body>
+                                
+                                
+                                <body name="torso_14" pos="0.50 0 0">
+                                  <geom name="torsoGeom_14" pos="0 0 0" size="0.25" type="sphere" density="100"/>
+                                  <joint axis="0 0 1" name="body_14" pos="-0.25 0.0 0.0" range="-20 20" type="hinge"/>
+                                  <joint axis="0 1 0" name="bodyupdown_14" pos="-0.25 0.0 0.0" range="-10 30" type="hinge"/>
+                                
+                                  
+                                  <body name="legbody_28" pos="0.0 -0.28 0">
+                                    <joint axis="0 0 1" name="lefthip_28" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                                    <geom fromto="0.0 0.0 0.0 0.0 -0.28 0.0" name="legGeom_28" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                    <body pos="0 -0.28 0" name="frontFoot_28">
+                                      <joint axis="1 0 0" name="ankle_28" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                                      <geom fromto="0.0 0.0 0.0 0 -0.6 0.0" name="ankleGeom_28" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                    </body>
+                                  </body>
+                                  
+                                  
+                                  <body name="legbody_29" pos="0.0 0.28 0">
+                                    <joint axis="0 0 1" name="righthip_29" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                                    <geom fromto="0.0 0.0 0.0 0.0 0.28 0.0" name="legGeom_29" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                    <body pos="0 0.28 0" name="frontFoot_29">
+                                      <joint axis="-1 0 0" name="ankle_29" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                                      <geom fromto="0.0 0.0 0.0 0 0.6 0.0" name="ankleGeom_29" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                    </body>
+                                  </body>
+                                  
+                                  
+                                  <body name="torso_15" pos="0.50 0 0">
+                                    <geom name="torsoGeom_15" pos="0 0 0" size="0.25" type="sphere" density="100"/>
+                                    <joint axis="0 0 1" name="body_15" pos="-0.25 0.0 0.0" range="-20 20" type="hinge"/>
+                                    <joint axis="0 1 0" name="bodyupdown_15" pos="-0.25 0.0 0.0" range="-10 30" type="hinge"/>
+                                  
+                                    
+                                    <body name="legbody_30" pos="0.0 -0.28 0">
+                                      <joint axis="0 0 1" name="lefthip_30" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                                      <geom fromto="0.0 0.0 0.0 0.0 -0.28 0.0" name="legGeom_30" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                      <body pos="0 -0.28 0" name="frontFoot_30">
+                                        <joint axis="1 0 0" name="ankle_30" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                                        <geom fromto="0.0 0.0 0.0 0 -0.6 0.0" name="ankleGeom_30" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                      </body>
+                                    </body>
+                                    
+                                    
+                                    <body name="legbody_31" pos="0.0 0.28 0">
+                                      <joint axis="0 0 1" name="righthip_31" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                                      <geom fromto="0.0 0.0 0.0 0.0 0.28 0.0" name="legGeom_31" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                      <body pos="0 0.28 0" name="frontFoot_31">
+                                        <joint axis="-1 0 0" name="ankle_31" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                                        <geom fromto="0.0 0.0 0.0 0 0.6 0.0" name="ankleGeom_31" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                      </body>
+                                    </body>
+                                    
+                                    
+                                    <body name="torso_16" pos="0.50 0 0">
+                                      <geom name="torsoGeom_16" pos="0 0 0" size="0.25" type="sphere" density="100"/>
+                                      <joint axis="0 0 1" name="body_16" pos="-0.25 0.0 0.0" range="-20 20" type="hinge"/>
+                                      <joint axis="0 1 0" name="bodyupdown_16" pos="-0.25 0.0 0.0" range="-10 30" type="hinge"/>
+                                    
+                                      
+                                      <body name="legbody_32" pos="0.0 -0.28 0">
+                                        <joint axis="0 0 1" name="lefthip_32" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                                        <geom fromto="0.0 0.0 0.0 0.0 -0.28 0.0" name="legGeom_32" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                        <body pos="0 -0.28 0" name="frontFoot_32">
+                                          <joint axis="1 0 0" name="ankle_32" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                                          <geom fromto="0.0 0.0 0.0 0 -0.6 0.0" name="ankleGeom_32" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                        </body>
+                                      </body>
+                                      
+                                      
+                                      <body name="legbody_33" pos="0.0 0.28 0">
+                                        <joint axis="0 0 1" name="righthip_33" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                                        <geom fromto="0.0 0.0 0.0 0.0 0.28 0.0" name="legGeom_33" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                        <body pos="0 0.28 0" name="frontFoot_33">
+                                          <joint axis="-1 0 0" name="ankle_33" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                                          <geom fromto="0.0 0.0 0.0 0 0.6 0.0" name="ankleGeom_33" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                        </body>
+                                      </body>
+                                      
+                                      
+                                      <body name="torso_17" pos="0.50 0 0">
+                                        <geom name="torsoGeom_17" pos="0 0 0" size="0.25" type="sphere" density="100"/>
+                                        <joint axis="0 0 1" name="body_17" pos="-0.25 0.0 0.0" range="-20 20" type="hinge"/>
+                                        <joint axis="0 1 0" name="bodyupdown_17" pos="-0.25 0.0 0.0" range="-10 30" type="hinge"/>
+                                      
+                                        
+                                        <body name="legbody_34" pos="0.0 -0.28 0">
+                                          <joint axis="0 0 1" name="lefthip_34" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                                          <geom fromto="0.0 0.0 0.0 0.0 -0.28 0.0" name="legGeom_34" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                          <body pos="0 -0.28 0" name="frontFoot_34">
+                                            <joint axis="1 0 0" name="ankle_34" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                                            <geom fromto="0.0 0.0 0.0 0 -0.6 0.0" name="ankleGeom_34" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                          </body>
+                                        </body>
+                                        
+                                        
+                                        <body name="legbody_35" pos="0.0 0.28 0">
+                                          <joint axis="0 0 1" name="righthip_35" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                                          <geom fromto="0.0 0.0 0.0 0.0 0.28 0.0" name="legGeom_35" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                          <body pos="0 0.28 0" name="frontFoot_35">
+                                            <joint axis="-1 0 0" name="ankle_35" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                                            <geom fromto="0.0 0.0 0.0 0 0.6 0.0" name="ankleGeom_35" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                          </body>
+                                        </body>
+                                        
+                                        
+                                        <body name="torso_18" pos="0.50 0 0">
+                                          <geom name="torsoGeom_18" pos="0 0 0" size="0.25" type="sphere" density="100"/>
+                                          <joint axis="0 0 1" name="body_18" pos="-0.25 0.0 0.0" range="-20 20" type="hinge"/>
+                                          <joint axis="0 1 0" name="bodyupdown_18" pos="-0.25 0.0 0.0" range="-10 30" type="hinge"/>
+                                        
+                                          
+                                          <body name="legbody_36" pos="0.0 -0.28 0">
+                                            <joint axis="0 0 1" name="lefthip_36" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                                            <geom fromto="0.0 0.0 0.0 0.0 -0.28 0.0" name="legGeom_36" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                            <body pos="0 -0.28 0" name="frontFoot_36">
+                                              <joint axis="1 0 0" name="ankle_36" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                                              <geom fromto="0.0 0.0 0.0 0 -0.6 0.0" name="ankleGeom_36" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                            </body>
+                                          </body>
+                                          
+                                          
+                                          <body name="legbody_37" pos="0.0 0.28 0">
+                                            <joint axis="0 0 1" name="righthip_37" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                                            <geom fromto="0.0 0.0 0.0 0.0 0.28 0.0" name="legGeom_37" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                            <body pos="0 0.28 0" name="frontFoot_37">
+                                              <joint axis="-1 0 0" name="ankle_37" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                                              <geom fromto="0.0 0.0 0.0 0 0.6 0.0" name="ankleGeom_37" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                            </body>
+                                          </body>
+                                          
+                                          
+                                          <body name="torso_19" pos="0.50 0 0">
+                                            <geom name="torsoGeom_19" pos="0 0 0" size="0.25" type="sphere" density="100"/>
+                                            <joint axis="0 0 1" name="body_19" pos="-0.25 0.0 0.0" range="-20 20" type="hinge"/>
+                                            <joint axis="0 1 0" name="bodyupdown_19" pos="-0.25 0.0 0.0" range="-10 30" type="hinge"/>
+                                          
+                                            
+                                            <body name="legbody_38" pos="0.0 -0.28 0">
+                                              <joint axis="0 0 1" name="lefthip_38" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                                              <geom fromto="0.0 0.0 0.0 0.0 -0.28 0.0" name="legGeom_38" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                              <body pos="0 -0.28 0" name="frontFoot_38">
+                                                <joint axis="1 0 0" name="ankle_38" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                                                <geom fromto="0.0 0.0 0.0 0 -0.6 0.0" name="ankleGeom_38" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                              </body>
+                                            </body>
+                                            
+                                            
+                                            <body name="legbody_39" pos="0.0 0.28 0">
+                                              <joint axis="0 0 1" name="righthip_39" pos="0.0 0.0 0.0" range="-40 40" type="hinge"/>
+                                              <geom fromto="0.0 0.0 0.0 0.0 0.28 0.0" name="legGeom_39" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                              <body pos="0 0.28 0" name="frontFoot_39">
+                                                <joint axis="-1 0 0" name="ankle_39" pos="0.0 0.0 0.0" range="30 100" type="hinge"/>
+                                                <geom fromto="0.0 0.0 0.0 0 0.6 0.0" name="ankleGeom_39" size="0.08" type="capsule" rgba=".08 .5 .3 1"/>
+                                              </body>
+                                            </body>
+                                            
+                                          </body>
+                                        </body>
+                                      </body>
+                                    </body>
+                                  </body>
+                                </body>
+                              </body>
+                            </body>
+                          </body>
+                        </body>
+                      </body>
+                    </body>
+                  </body>
+                </body>
+              </body>
+            </body>
+          </body>
+        </body>
+      </body>
+
+    </body>
+  </worldbody>
+  <actuator>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="lefthip_0" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_0" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="righthip_1" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_1" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="lefthip_2" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_2" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="righthip_3" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_3" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="body_1" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="bodyupdown_1" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="lefthip_4" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_4" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="righthip_5" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_5" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="body_2" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="bodyupdown_2" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="lefthip_6" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_6" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="righthip_7" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_7" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="body_3" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="bodyupdown_3" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="lefthip_8" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_8" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="righthip_9" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_9" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="body_4" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="bodyupdown_4" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="lefthip_10" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_10" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="righthip_11" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_11" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="body_5" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="bodyupdown_5" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="lefthip_12" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_12" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="righthip_13" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_13" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="body_6" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="bodyupdown_6" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="lefthip_14" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_14" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="righthip_15" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_15" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="body_7" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="bodyupdown_7" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="lefthip_16" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_16" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="righthip_17" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_17" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="body_8" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="bodyupdown_8" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="lefthip_18" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_18" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="righthip_19" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_19" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="body_9" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="bodyupdown_9" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="lefthip_20" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_20" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="righthip_21" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_21" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="body_10" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="bodyupdown_10" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="lefthip_22" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_22" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="righthip_23" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_23" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="body_11" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="bodyupdown_11" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="lefthip_24" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_24" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="righthip_25" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_25" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="body_12" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="bodyupdown_12" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="lefthip_26" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_26" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="righthip_27" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_27" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="body_13" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="bodyupdown_13" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="lefthip_28" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_28" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="righthip_29" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_29" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="body_14" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="bodyupdown_14" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="lefthip_30" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_30" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="righthip_31" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_31" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="body_15" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="bodyupdown_15" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="lefthip_32" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_32" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="righthip_33" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_33" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="body_16" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="bodyupdown_16" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="lefthip_34" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_34" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="righthip_35" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_35" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="body_17" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="bodyupdown_17" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="lefthip_36" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_36" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="righthip_37" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_37" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="body_18" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="bodyupdown_18" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="lefthip_38" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_38" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="righthip_39" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="ankle_39" gear="150"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="body_19" gear="100"/>
+    <motor ctrllimited="true" ctrlrange="-1.0 1.0" joint="bodyupdown_19" gear="100"/>
+  </actuator>
+  <custom>
+    <numeric data="0.0 0.0 0.55 1.0 0.0 0.0 0.0 0.0 -1.0 0.0 1.0 0.0 -1.0 0.0 1.0 0.0 -1.0 0.0 1.0 0.0 -1.0 0.0 1.0 0.0 -1.0 0.0 1.0 0.0 -1.0 0.0 1.0 0.0 -1.0 0.0 1.0 0.0 -1.0 0.0 1.0 0.0 -1.0 0.0 1.0 0.0 -1.0 0.0 1.0 0.0 -1.0 0.0 1.0 0.0 -1.0 0.0 1.0 0.0 -1.0 0.0 1.0 0.0 -1.0 0.0 1.0 0.0 -1.0 0.0 1.0 0.0 -1.0 0.0 1.0 0.0 -1.0 0.0 1.0 0.0 -1.0 0.0 1.0 0.0 -1.0 0.0 1.0 0.0 -1.0 0.0 1.0" name="init_qpos"/>
+  </custom>
+
+</mujoco>

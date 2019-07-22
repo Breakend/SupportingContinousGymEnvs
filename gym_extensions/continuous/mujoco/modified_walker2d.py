@@ -10,20 +10,25 @@ from gym_extensions.continuous.mujoco.perturbed_bodypart_env import ModifiedSize
 import os
 import gym
 
-Walker2dWallEnv = lambda *args, **kwargs : WallEnvFactory(ModifiedWalker2dEnv)(model_path=os.path.dirname(gym.envs.mujoco.__file__) + "/assets/walker2d.xml", ori_ind=-1, *args, **kwargs)
+Walker2dWallEnv = lambda *args, **kwargs: WallEnvFactory(ModifiedWalker2dEnv)(
+    model_path=os.path.dirname(gym.envs.mujoco.__file__) + "/assets/walker2d.xml", ori_ind=-1, *args, **kwargs)
 
-Walker2dGravityEnv = lambda *args, **kwargs : GravityEnvFactory(ModifiedWalker2dEnv)(model_path=os.path.dirname(gym.envs.mujoco.__file__) + "/assets/walker2d.xml", *args, **kwargs)
+Walker2dGravityEnv = lambda *args, **kwargs: GravityEnvFactory(ModifiedWalker2dEnv)(
+    model_path=os.path.dirname(gym.envs.mujoco.__file__) + "/assets/walker2d.xml", *args, **kwargs)
 
-Walker2dModifiedBodyPartSizeEnv = lambda *args, **kwargs : ModifiedSizeEnvFactory(ModifiedWalker2dEnv)(model_path=os.path.dirname(gym.envs.mujoco.__file__) + "/assets/walker2d.xml", *args, **kwargs)
+Walker2dModifiedBodyPartSizeEnv = lambda *args, **kwargs: ModifiedSizeEnvFactory(ModifiedWalker2dEnv)(
+    model_path=os.path.dirname(gym.envs.mujoco.__file__) + "/assets/walker2d.xml", *args, **kwargs)
 
 
 class ModifiedWalker2dEnv(Walker2dEnv, utils.EzPickle):
     """
     Simply allows changing of XML file, probably not necessary if we pull request the xml name as a kwarg in openai gym
     """
+
     def __init__(self, **kwargs):
         mujoco_env.MujocoEnv.__init__(self, kwargs["model_path"], 4)
         utils.EzPickle.__init__(self)
+
 
 class Walker2dWithSensorEnv(Walker2dEnv, utils.EzPickle):
     """
@@ -34,7 +39,6 @@ class Walker2dWithSensorEnv(Walker2dEnv, utils.EzPickle):
         self.n_bins = n_bins
         mujoco_env.MujocoEnv.__init__(self, kwargs["model_path"], 4)
         utils.EzPickle.__init__(self)
-
 
     def _get_obs(self):
         obs = np.concatenate([

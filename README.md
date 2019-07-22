@@ -6,7 +6,7 @@ This python package is an extension to OpenAI Gym for auxiliary tasks (multitask
 
 ## Dependencies
 
-- [Python 3.5.2](https://www.python.org/)
+- [Python 3.5.2](https://www.python.org/) and [Python 3.6.x](https://www.python.org/)
 - [OpenAI Gym](https://gym.openai.com/)
 - [MuJoCo](http://mujoco.org/) (Optional)
 - [mujoco-py](https://github.com/openai/mujoco-py#install-mujoco) (Optional)
@@ -36,9 +36,20 @@ at `~/.mujoco/mjkey.txt`
 pip3 install -e .[mujoco]
 ```
 
+#### MuJoCo Env naming Rule
+Please check the official [[mujoco_py]](https://github.com/openai/mujoco-py)
+- `env_name-v0`: MuJoCo version < 2.0
+- `env_name-v1`: MuJoCo version == 2.0
+
 ### Test Installation
+You have two ways to test it. 
 ```
-nosetests -v gym_extensions
+# 1.
+$ nosetests -v gym_extensions
+
+# 2. MuJoCo test
+$ cd tests
+$ python simple_test.py
 ```
 
 ### Possible Issues
@@ -75,10 +86,32 @@ env = gym.make("State-Based-Navigation-2d-Map1-Goal1-v0")
 ```
 
 ```python
+import gym
 from gym_extensions.continuous import mujoco
-env = gym.make("HopperWall-v0")
+
+# env = gym.make("HopperGravityHalf-v0") # MuJoCo before ver2.0
+env = gym.make("HopperGravityHalf-v1") # MuJoCo ver2.0
+
+env.reset()
+for _ in range(1000):
+    env.render()
+    env.step(env.action_space.sample()) # take a random action
+env.close()
 ```
 
+```python
+import gym
+import gym_extensions.continuous.mujoco.nervenet_envs.register as register
+
+env = gym.make("WalkersHopperthree-v1")
+env.reset()
+
+for _ in range(100*3):
+    env.render()
+    action = env.action_space.sample()
+    state, reward, done, info = env.step(action)
+
+```
 
 ## More info
 

@@ -1,15 +1,12 @@
-import os.path as osp
-import tempfile
-import xml.etree.ElementTree as ET
-import math
-
-import numpy as np
-import gym
-import random
-import os
 from gym import utils
 from gym.envs.mujoco import mujoco_env
-import mujoco_py
+
+""" As of 18/07/2019
+Check this out!
+This can be good reference to modify some attributes in `mujoco_py`
+https://gist.github.com/machinaut/9bd1473c763554086c176d39062700b0
+"""
+
 
 def GravityEnvFactory(class_type):
     """class_type should be an OpenAI gym type"""
@@ -18,6 +15,7 @@ def GravityEnvFactory(class_type):
         """
         Allows the gravity to be changed by the
         """
+
         def __init__(
                 self,
                 model_path,
@@ -30,8 +28,8 @@ def GravityEnvFactory(class_type):
             # make sure we're using a proper OpenAI gym Mujoco Env
             assert isinstance(self, mujoco_env.MujocoEnv)
 
-            self.model.opt.gravity = (mujoco_py.mjtypes.c_double * 3)(*[0., 0., gravity])
-            self.model._compute_subtree()
-            self.model.forward()
+            self.model.opt.gravity[0] = 0.
+            self.model.opt.gravity[1] = 0.
+            self.model.opt.gravity[2] = gravity * 3
 
     return GravityEnv
